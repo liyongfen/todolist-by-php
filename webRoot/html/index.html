@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8" />
+	<title>Todolist</title>
+	<script type="text/javascript" src="../util/ajax.js"></script> 
+	<script type="text/javascript" src="../util/form.js"></script> 
+	<script type="text/javascript" src="../util/css.js"></script> 
+	
+	<script type="text/javascript" src="../js/base.js"></script> 
+	<script type="text/javascript" src="../js/add.js"></script> 
+	<script type="text/javascript" src="../js/del.js"></script> 
+	<script type="text/javascript" src="../js/edit.js"></script> 
+	<script type="text/javascript" src="../js/search.js"></script>
+
+	<script type="text/javascript" src="../js/modal.js"></script> 
+	<script type="text/javascript" src="../js/notice.js"></script> 
+
+	<link href="../css/index.css" type="text/css" rel="stylesheet"/>
+	<link href="../css/modal.css" type="text/css" rel="stylesheet"/>
+	<link href="../css/notice.css" type="text/css" rel="stylesheet"/>
+</head>
+<body>
+<div class="content">
+	<header class="header">
+		<div class="todo-color">
+			<span class="todo-color-one todo-color-style"></span>
+			<span class="todo-color-two todo-color-style"></span>
+			<span class="todo-color-three todo-color-style"></span>
+			<span class="todo-color-frou todo-color-style"></span>
+			<span class="todo-color-five todo-color-style"></span>
+		</div>
+		<p class="header-title">
+			<span>to</span>
+			<span class="header-title-sub">Do</span>
+			<span>List</span>
+		</p>
+		<div class="header-username-time">
+			<p class="header-username">
+				<span>Hi,<span>
+				<span id="username" class="header-username-sub" ></span>
+			</p>
+			<div class="header-current-time">
+				<p>
+					<span>当前时间：<span>
+					<span id="today"></span>
+				</p>
+			</div>
+		</div>
+	</header>
+	<div class="search">
+		<form action="" method="post" id="searchData" class="search-form" >
+			<div >
+				<label for="time" class="search-form-label">时间:</label>
+				<input type="date"  value="" name="searchdate"  id="searchdate" class="search-form-time search-form-sel"/>
+				<label for="status" class="search-form-label">状态:</label>
+				<select name="searchstatus" id="searchstatus" class="search-form-sel search-form-select">
+					<option value="">请选择</option>
+					<option value="0">将要执行</option>
+					<option value="1">已经执行</option>
+					<option value="2">放弃执行</option>
+				</select>
+				<input type="button" value="查找" id="search" class="search-form-submit" />
+			</div>
+			<div>
+				<label for="keywords" class="search-form-label">关键词:</label>
+				<input type="text" value="" maxlength="20" name="keywords" id="keywords" class="search-form-sel search-form-keywords"/>
+				<label for="importance" class="search-form-label">重要性:</label>
+				<select name="searchimportance"  id="searchimportance" class="search-form-sel search-form-select">
+					<option value="">请选择</option>
+					<option value="0">重要</option>
+					<option value="1">一般</option>
+				</select>
+			</div>
+		</form>
+		<button type="button" class="search-form-add" id="add">添加</button> 
+	</div>
+	<section style="clear: both;">
+		<ul id="todolist"></ul>
+	</section>
+	<div class="todo-color">
+		<span class="todo-color-one todo-color-style"></span>
+		<span class="todo-color-two todo-color-style"></span>
+		<span class="todo-color-three todo-color-style"></span>
+		<span class="todo-color-frou todo-color-style"></span>
+		<span class="todo-color-five todo-color-style"></span>
+	</div>
+	<div class="modal">
+		<div class="modal-content">	
+			<div class="modal-header"><span id="modal-header-text"></span><span id="modal-icon-cancel" class="modal-icon-cancel">x</span></div>
+				<div class="modal-main">
+					<form action="" method="post" id="modalData"> 
+						<input type="hidden" value=""  name="id" id="id"/>
+						<div class="form-item">
+							<label for="title">
+								<span class="modal-label-icon">*</span>
+								<span>标题:<span>
+							</label>
+							<input type="text" value=""  maxlength="20" name="title" id="title" class="modal-form-title modal-form-right"/>
+						</div>
+						<div class="form-item">
+							<label for="time">
+								<span class="modal-label-icon">*</span>
+								<span>时间:<span>
+							</label>
+							<input type="date" value="" name="time" id="time"  class="modal-form-right modal-form-time"/>
+						</div>
+						<div class="form-item">
+							<label for="status">
+								<span class="modal-label-icon">*</span>
+								<span>状态:<span>
+							</label>
+							<select name="status" id="status" class="modal-form-right modal-form-status">
+								<option value="0">将要执行</option>
+								<option value="1">已经执行</option>
+								<option value="2">放弃执行</option>
+							</select>
+						</div>
+						<div class="form-item">
+							<label for="importance">
+								<span class="modal-label-icon">*</span>
+								<span>重要性:<span>
+							</label>
+							<select name="importance" id="importance" class="modal-form-right modal-form-importance">
+								<option value="0">重要</option>
+								<option value="1">一般</option>
+							</select>
+						</div>
+						<div class="form-item">
+							<label for="desc">详情:</label>
+							<textarea type="textarea" value=""  maxlength="100" name="desc" id="desc" class="modal-form-desc modal-form-right"></textarea>
+						</div>
+						<div class="modal-footer">
+							<a href="javascript:;" id="modalOk" class="modal-submit-btn">确定</a>
+							<a href="javascript:;" id="modalCancel" class="modal-cancel-btn">取消</a>
+						</div>
+					</form>
+				</div>
+		</div>
+	</div>
+	<div id="notice" class="notice" >
+		<div class="notice-content">
+			<div class="notice-main">
+				<span id="notice-icon" class="notice-icon">✓</span>
+				<span class="notice-text">添加成功！</span>
+			</div>
+			<div class="notice-footer">
+				<a href="javascript:;" id="notice-ok" class="notice-ok-btn">确定</a>
+			</div>
+		</div>
+	</div>
+</div>
+<script type="text/javascript"> 
+	//基本信息
+	base();
+	//end base
+	var ul = document.getElementById('todolist');
+	ul.onclick = function(event){
+		classname = event.target.getAttribute('class');
+		switch(classname){
+			//删除部分
+			case 'todo-del':
+				var id = event.target.getAttribute('data-id');
+				delTodo(id);
+				break;
+			//end del
+			//编辑部分
+			case 'todo-edit':
+				var data = JSON.parse(event.target.getAttribute('data-todo'));
+				editTodo(data);
+				break;
+			//end edit
+			default:break;
+		}
+	}
+	//添加部分
+	addTodo();
+	//end add
+	//查询部分
+	searchTodos();
+	//end search	
+</script>
+</body>
+</html>
