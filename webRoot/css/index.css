@@ -42,7 +42,7 @@ body{
 .todo-color-three{
 	background-color: #9ec22b;
 }
-.todo-color-frou{
+.todo-color-four{
 	background-color: #d15d33;
 }
 .todo-color-five{
@@ -84,14 +84,23 @@ body{
 }
 /*查询部分*/
 .search{
-    padding: 10px 5px 0 5px;
     font-size: 14px;
 }
-.search-form{
-	display:inline-block;
+.search-line{
+	position: relative;
+	padding: 5px 0;
 }
 .search-form-label{
 	padding-left: 10px;
+	width: 17%;
+	text-align:right;
+	display: inline-block;
+}
+.search-form-label-short{
+	width: 10%;
+}
+.search-form-importance{
+	
 }
 .search-form-time{
 	padding: 4px 7px;
@@ -101,29 +110,46 @@ body{
     border-radius: 4px;
 	font-size: 14px;
 }
+.search-form-keywords-cancel{
+	width: 14px;
+    height: 14px;
+    display: none;
+	position: absolute;
+    top: 13px;
+    left: 230px;
+    border-radius: 20px;
+    vertical-align: middle;
+    line-height: 12px;
+    text-align: center;
+    background: #ddd;
+    font-size: 12px;
+    color: #fff;
+    cursor:pointer;
+}
 .search-form-keywords{
-	width: 90px;
-    padding: 6px 7px; 
+	width: 145px;
+    padding: 6px 18px 6px 7px; 
+}
+.search-form-keywords-cancel-show{
+	display: block;
 }
 .search-form-select{
 	height: 32px;
+	width: 81px;
 }
 .search-form-submit{
 	background-color:#1e91ed;
 	padding: 2px 10px;
-	margin-left:24px;
+	margin-left:75px;
     border:1px solid #f8f8f8;
     border-radius:5px;
 	font-size:14px;
 	color:#fff;
 }
-
 .search-form-add{
-	float: right;
 	text-decoration: none;
 	background-color: #1e91ed;
-	margin-right: 8px;
-	margin-bottom: 10px;
+	margin-left: 75px;
 	padding: 2px 10px;
 	border: 1px solid #f8f8f8;
 	border-radius: 5px;
@@ -139,7 +165,7 @@ body{
 .todo-list{
 	position: relative;
 	list-style: none;
-	margin: 20px 0;
+	margin: 0 10px 20px 10px;
 	border-radius: 10px;
 	background-color: #edf6fb;
 	border: 1px solid #e3edf3;
@@ -148,7 +174,7 @@ body{
 .todo-list-giveup{
 	position: relative;
 	list-style: none;
-	margin: 20px 0;
+	margin: 0 10px 20px 10px;
 	background-color: #f7f7f7;
 	border: 1px solid #d9d9d9;
 	border-radius:10px;
@@ -157,7 +183,7 @@ body{
 .todo-list-doed{
 	position: relative;
 	list-style: none;
-	margin: 20px 0;
+	margin: 0 10px 20px 10px;
 	background-color: #fef0ef;
 	border: 1px solid #fcdbd9;
 	border-radius: 10px;

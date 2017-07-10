@@ -1,3 +1,53 @@
+window.onload = function(){
+	//基本信息
+	base();
+	//end base
+	var ul = document.getElementById('todolist');
+	ul.onclick = function(event){
+		classname = event.target.getAttribute('class');
+		switch(classname){
+			//删除部分
+			case 'todo-del':
+				var id = event.target.getAttribute('data-id');
+				delTodo(id);
+				break;
+			//end del
+			//编辑部分
+			case 'todo-edit':
+				var data = JSON.parse(event.target.getAttribute('data-todo'));
+				editTodo(data);
+				break;
+			//end edit
+			default:break;
+		}
+	}
+	//添加部分
+	addTodo();
+	//end add
+	//查询部分
+	var keywords = document.getElementById('keywords');
+	hiddenKeywords = document.getElementsByClassName('search-form-keywords-cancel')[0];
+	keywords.onfocus = function(){
+		if(!hasClass(hiddenKeywords,'search-form-keywords-cancel-show')){
+			addClass(hiddenKeywords,'search-form-keywords-cancel-show');
+		}
+		hiddenKeywords.onclick = function(){
+			keywords.value = '';
+			if(hasClass(hiddenKeywords,'search-form-keywords-cancel-show')){
+				removeClass(hiddenKeywords,'search-form-keywords-cancel-show');
+			}
+		}
+	}
+	keywords.onblur = function(){
+		if((keywords.value == '' || keywords.value == null) && hasClass(hiddenKeywords,'search-form-keywords-cancel-show')){
+			removeClass(hiddenKeywords,'search-form-keywords-cancel-show');
+		}
+	}
+	searchTodos();
+	//end search	
+}
+
+
 //获取基本信息
 function base(){
 	var method = 'get';

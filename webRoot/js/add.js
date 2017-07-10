@@ -3,6 +3,8 @@ function addTodo(){
 	add.onclick = function(){
 		var modal = document.getElementsByClassName('modal')[0];
 		document.getElementById('modal-header-text').innerHTML = '添加活动';
+		var time = document.getElementById('time');
+		time.value = getTime("-",0);
 		addClass(modal,'show');
 		var modalOk = document.getElementById('modalOk');
 		modalOk.onclick = function(){

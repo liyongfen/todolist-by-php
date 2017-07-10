@@ -6,6 +6,7 @@
 	<script type="text/javascript" src="../util/ajax.js"></script> 
 	<script type="text/javascript" src="../util/form.js"></script> 
 	<script type="text/javascript" src="../util/css.js"></script> 
+	<script type="text/javascript" src="../util/time.js"></script> 
 	
 	<script type="text/javascript" src="../js/base.js"></script> 
 	<script type="text/javascript" src="../js/add.js"></script> 
@@ -27,7 +28,7 @@
 			<span class="todo-color-one todo-color-style"></span>
 			<span class="todo-color-two todo-color-style"></span>
 			<span class="todo-color-three todo-color-style"></span>
-			<span class="todo-color-frou todo-color-style"></span>
+			<span class="todo-color-four todo-color-style"></span>
 			<span class="todo-color-five todo-color-style"></span>
 		</div>
 		<p class="header-title">
@@ -50,8 +51,8 @@
 	</header>
 	<div class="search">
 		<form action="" method="post" id="searchData" class="search-form" >
-			<div >
-				<label for="time" class="search-form-label">时间:</label>
+			<div class="search-line">
+				<label for="time" class="search-form-label search-form-label-short">时间:</label>
 				<input type="date"  value="" name="searchdate"  id="searchdate" class="search-form-time search-form-sel"/>
 				<label for="status" class="search-form-label">状态:</label>
 				<select name="searchstatus" id="searchstatus" class="search-form-sel search-form-select">
@@ -62,18 +63,19 @@
 				</select>
 				<input type="button" value="查找" id="search" class="search-form-submit" />
 			</div>
-			<div>
-				<label for="keywords" class="search-form-label">关键词:</label>
+			<div class="search-line">
+				<label for="keywords" class="search-form-label search-form-label-short">关键词:</label>
+				<span class="search-form-keywords-cancel">x</span>
 				<input type="text" value="" maxlength="20" name="keywords" id="keywords" class="search-form-sel search-form-keywords"/>
-				<label for="importance" class="search-form-label">重要性:</label>
+				<label for="importance" class="search-form-label search-form-importance">重要性:</label>
 				<select name="searchimportance"  id="searchimportance" class="search-form-sel search-form-select">
 					<option value="">请选择</option>
 					<option value="0">重要</option>
 					<option value="1">一般</option>
 				</select>
+				<button type="button" class="search-form-add" id="add">添加</button> 
 			</div>
 		</form>
-		<button type="button" class="search-form-add" id="add">添加</button> 
 	</div>
 	<section style="clear: both;">
 		<ul id="todolist"></ul>
@@ -82,7 +84,7 @@
 		<span class="todo-color-one todo-color-style"></span>
 		<span class="todo-color-two todo-color-style"></span>
 		<span class="todo-color-three todo-color-style"></span>
-		<span class="todo-color-frou todo-color-style"></span>
+		<span class="todo-color-four todo-color-style"></span>
 		<span class="todo-color-five todo-color-style"></span>
 	</div>
 	<div class="modal">
@@ -151,34 +153,7 @@
 	</div>
 </div>
 <script type="text/javascript"> 
-	//基本信息
-	base();
-	//end base
-	var ul = document.getElementById('todolist');
-	ul.onclick = function(event){
-		classname = event.target.getAttribute('class');
-		switch(classname){
-			//删除部分
-			case 'todo-del':
-				var id = event.target.getAttribute('data-id');
-				delTodo(id);
-				break;
-			//end del
-			//编辑部分
-			case 'todo-edit':
-				var data = JSON.parse(event.target.getAttribute('data-todo'));
-				editTodo(data);
-				break;
-			//end edit
-			default:break;
-		}
-	}
-	//添加部分
-	addTodo();
-	//end add
-	//查询部分
-	searchTodos();
-	//end search	
+
 </script>
 </body>
 </html>
