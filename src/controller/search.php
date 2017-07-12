@@ -8,6 +8,36 @@
 
 	$todoListDatas = array();
 	if($status != '' || $time != '' || $importance != '' || $keywords != ''){
+		$conn = setMysqlContent();
+		$sql = "SELECT * FROM todolists WHERE 1=1";
+    	if($status != "" || $status != null){
+    		$sql =$sql." AND status = '$status'";
+    	}
+    	if ($time != "" || $time != null){
+			$sql =$sql." AND todo_time = '$time'";
+		}
+		if ($importance != "" || $importance != null){
+			$sql =$sql." AND importance = '$importance'";
+		}
+		if ($keywords != "" || $keywords != null){
+			$sql =$sql." AND CONCAT(title,todo_desc) like '%".$keywords."%'";
+		}
+		$result=mysqli_query($conn,$sql);
+		while($row = mysqli_fetch_array($result)) {  
+			$todo = array(
+	 			'id' => $row['id'],
+	 			'title' => $row['title'],
+	 			'status' => $row['status'],
+	 			'desc' => $row['todo_desc'],
+	 			'time' => $row['todo_time'],
+	 			'importance' => $row['importance']
+		 	);
+		 	array_push($todoListDatas, json_encode($todo));
+		} 
+		$todoListDatas = implode(',',$todoListDatas);
+		mysqli_close($conn);
+		echo '{"status":0,"data":['.$todoListDatas.']}';
+		/*
 		//收获所有输入的字段
 		$data = array();
 		if($status != ''){
@@ -90,13 +120,10 @@
 			 	);
 			 	array_push($todoListDatas, json_encode($todo));
 			}
-		}
-		$todoListDatas = implode(',',$todoListDatas);
-		$base = '{"status":0,"data":['.$todoListDatas.']}';
-		echo $base;
+		}*/
+
 	}else{
 		$todoListDatas = getTodoLists();
-		$base = '{"status":1,"data":['.$todoListDatas.']}';
-		echo $base;
+		echo '{"status":1,"data":['.$todoListDatas.']}';
 	}
 ?>

@@ -46,8 +46,6 @@ window.onload = function(){
 	searchTodos();
 	//end search	
 }
-
-
 //获取基本信息
 function base(){
 	var method = 'get';

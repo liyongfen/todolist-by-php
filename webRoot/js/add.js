@@ -12,6 +12,7 @@ function addTodo(){
 			var url = '../../src/controller/add.php';
 			var data = serializeForm('modalData');
 			ajax(method,url,data,function(result){
+				console.log(result);
 				var addDatas = JSON.parse(result);
 				removeClass(modal,'show');
 				cleanModal();

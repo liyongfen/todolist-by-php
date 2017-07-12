@@ -4,7 +4,7 @@
 	$id = isset($_GET['id']) ? $_GET['id'] : '';
 	$todoListDatas = array();
 	if($id != ''){
-		$file = fopen('../dao/data.csv','r');
+		/*$file = fopen('../dao/data.csv','r');
 		$rows = array();
 		while(!feof($file)){
 			$line = fgets($file);
@@ -19,9 +19,16 @@
 		foreach ($rows as $key => $value) {
 			fwrite($file, $value);
 		}
-		fclose($file);
-		$todoListDatas = getTodoLists();
-		echo '{"status":0,"notice":"del","data":['.$todoListDatas.']}';
+		fclose($file);*/
+		$conn = setMysqlContent();
+		$sql = "DELETE FROM todolists WHERE id = $id";
+		if(!mysqli_query($conn,$sql)){
+			die('Error'.mysqli_error($conn));
+		}else{
+			mysqli_close($conn);
+			$todoListDatas = getTodoLists();
+			echo '{"status":1,"notice":"del","data":['.$todoListDatas.']}';
+		}
 	}else{
     	$todoListDatas = getTodoLists();
 		echo '{"status":1,"notice":"del","data":['.$todoListDatas.']}';
