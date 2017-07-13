@@ -19,7 +19,7 @@
 		// }
 		$id = uniqid();
 		$conn = setMysqlContent();
-		$sql = "INSERT INTO todolists (id,title,status,importance,todo_time,todo_desc) VALUES ('$id','$title','$status','$importance','$time','$desc')";
+		$sql = "INSERT INTO list (id,title,status,importance,todo_time,todo_desc) VALUES ('$id','$title','$status','$importance','$time','$desc')";
 		if(!mysqli_query($conn,$sql)){
 			die('Error'.mysqli_error($conn));
 		}else{

@@ -21,13 +21,13 @@
 		}
 		fclose($file);*/
 		$conn = setMysqlContent();
-		$sql = "DELETE FROM todolists WHERE id = $id";
+		$sql = "DELETE FROM list WHERE id = '$id'";
 		if(!mysqli_query($conn,$sql)){
 			die('Error'.mysqli_error($conn));
 		}else{
 			mysqli_close($conn);
 			$todoListDatas = getTodoLists();
-			echo '{"status":1,"notice":"del","data":['.$todoListDatas.']}';
+			echo '{"status":0,"notice":"del","data":['.$todoListDatas.']}';
 		}
 	}else{
     	$todoListDatas = getTodoLists();

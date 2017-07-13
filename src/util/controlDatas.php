@@ -3,7 +3,8 @@
 	function getTodoLists(){
 		$conn = setMysqlContent();
 		//执行MySQL语句
-		$result=mysqli_query($conn,"SELECT * FROM todolists");
+		mysqli_query($conn,"set names 'utf8'");
+		$result=mysqli_query($conn,"SELECT * FROM list");
 		//提取数据
 		$todoListDatas = array();
 		$today = date('Y-m-d');
@@ -19,6 +20,7 @@
 			 	);
 			 	array_push($todoListDatas, json_encode($todo));
 			}
+			//var_dump($row['title']);
 		} 
 		$todoListDatas = implode(',',$todoListDatas);
 		mysqli_close($conn);

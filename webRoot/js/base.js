@@ -52,6 +52,7 @@ function base(){
 	var url = '../../src/controller/index.php';
 	var data = 'base=1'; 
 	ajax(method,url,data,function(result){
+		console.log(result);
 		var datas = JSON.parse(result);
 		if(!Number(datas['status'])){
 			document.getElementById('username').innerHTML = datas['username'];

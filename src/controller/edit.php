@@ -33,7 +33,7 @@
 		}
 		fclose($file);*/
 		$conn = setMysqlContent();
-		$sql = "UPDATE todolists SET status = '$status',importance = '$importance',title = '$title',todo_time = '$time',todo_desc = '$desc'  WHERE id = '$id'";
+		$sql = "UPDATE list SET status = '$status',importance = '$importance',title = '$title',todo_time = '$time',todo_desc = '$desc'  WHERE id = '$id'";
 		if(!mysqli_query($conn,$sql)){
 			die('Error'.mysqli_error($conn));
 		}else{

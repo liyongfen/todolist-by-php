@@ -9,7 +9,7 @@
 	$todoListDatas = array();
 	if($status != '' || $time != '' || $importance != '' || $keywords != ''){
 		$conn = setMysqlContent();
-		$sql = "SELECT * FROM todolists WHERE 1=1";
+		$sql = "SELECT * FROM list WHERE 1=1";
     	if($status != "" || $status != null){
     		$sql =$sql." AND status = '$status'";
     	}
